@@ -193,3 +193,17 @@ func AddOffset(a []FLOAT, offset FLOAT) []FLOAT {
 	}
 	return b
 }
+
+// EveryNth constructs a new array from every nth item in a. The first item is
+// always used. If n is <= 0, an empty array is returned.
+func EveryNth(a []FLOAT, n int) []FLOAT {
+	if n <= 0 {
+		return nil
+	}
+
+	b := make([]FLOAT, (len(a)+n-1)/n)
+	for i := range b {
+		b[i] = a[i*n]
+	}
+	return b
+}

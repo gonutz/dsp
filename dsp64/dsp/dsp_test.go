@@ -124,3 +124,19 @@ func TestAddOffsetAddsValueToAll(t *testing.T) {
 	check.Eq(t, AddOffset([]float64{2}, 1), []float64{3})
 	check.Eq(t, AddOffset([]float64{2, 3, 4}, -1), []float64{1, 2, 3})
 }
+
+func TestEveryNthTakesEveryNthElement(t *testing.T) {
+	check.Eq(t, EveryNth(nil, 3), nil)
+	check.Eq(t, EveryNth([]float64{1}, 3), []float64{1})
+	check.Eq(t, EveryNth([]float64{1, 2}, 3), []float64{1})
+	check.Eq(t, EveryNth([]float64{1, 2, 3}, 3), []float64{1})
+	check.Eq(t, EveryNth([]float64{1, 2, 3, 4}, 3), []float64{1, 4})
+	check.Eq(t, EveryNth([]float64{1, 2, 3, 4, 5}, 3), []float64{1, 4})
+	check.Eq(t, EveryNth([]float64{1, 2, 3, 4, 5, 6}, 3), []float64{1, 4})
+	check.Eq(t, EveryNth([]float64{1, 2, 3, 4, 5, 6, 7}, 3), []float64{1, 4, 7})
+
+	check.Eq(t, EveryNth([]float64{1, 2, 3}, 1), []float64{1, 2, 3})
+
+	check.Eq(t, EveryNth([]float64{1, 2, 3}, 0), nil)
+	check.Eq(t, EveryNth([]float64{1, 2, 3}, -1), nil)
+}
