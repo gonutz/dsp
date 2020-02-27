@@ -184,3 +184,12 @@ func Sub(a ...[]float64) []float64 {
 	}
 	return diff
 }
+
+// AddOffset returns a new array with all values offset greater than in a.
+func AddOffset(a []float64, offset float64) []float64 {
+	b := make([]float64, len(a))
+	for i := range b {
+		b[i] = a[i] + offset
+	}
+	return b
+}

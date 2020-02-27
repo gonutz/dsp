@@ -118,3 +118,9 @@ func TestSubUsesTheLowestCommonElementCount(t *testing.T) {
 	check.Eq(t, Sub([]float64{9, 8, 3}, []float64{4, 7}), []float64{5, 1})
 	check.Eq(t, Sub([]float64{5}, []float64{1}, []float64{2}), []float64{2})
 }
+
+func TestAddOffsetAddsValueToAll(t *testing.T) {
+	check.Eq(t, AddOffset(nil, 1), nil)
+	check.Eq(t, AddOffset([]float64{2}, 1), []float64{3})
+	check.Eq(t, AddOffset([]float64{2, 3, 4}, -1), []float64{1, 2, 3})
+}
