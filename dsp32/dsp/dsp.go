@@ -207,3 +207,16 @@ func EveryNth(a []float32, n int) []float32 {
 	}
 	return b
 }
+
+// Repeat makes s slice of float32 of length n and sets all values to x. If n <= 0
+// the returned slice is empty.
+func Repeat(x float32, n int) []float32 {
+	if n <= 0 {
+		return nil
+	}
+	v := make([]float32, n)
+	for i := range v {
+		v[i] = x
+	}
+	return v
+}

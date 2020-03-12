@@ -140,3 +140,11 @@ func TestEveryNthTakesEveryNthElement(t *testing.T) {
 	check.Eq(t, EveryNth([]float64{1, 2, 3}, 0), nil)
 	check.Eq(t, EveryNth([]float64{1, 2, 3}, -1), nil)
 }
+
+func TestRepeatMakesArrayOfSameValues(t *testing.T) {
+	check.Eq(t, Repeat(1.5, -1), nil)
+	check.Eq(t, Repeat(1.5, 0), nil)
+	check.Eq(t, Repeat(1.5, 1), []float64{1.5})
+	check.Eq(t, Repeat(1.5, 2), []float64{1.5, 1.5})
+	check.Eq(t, Repeat(1.5, 3), []float64{1.5, 1.5, 1.5})
+}
