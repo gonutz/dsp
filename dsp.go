@@ -220,3 +220,13 @@ func Repeat(x FLOAT, n int) []FLOAT {
 	}
 	return v
 }
+
+// Reverse returns a copy of x with elements in reverse order, e.g.
+// 1,2,3 -> 3,2,1.
+func Reverse(x []FLOAT) []FLOAT {
+	y := make([]FLOAT, len(x))
+	for i := range y {
+		y[i] = x[len(x)-1-i]
+	}
+	return y
+}

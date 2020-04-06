@@ -148,3 +148,10 @@ func TestRepeatMakesArrayOfSameValues(t *testing.T) {
 	check.Eq(t, Repeat(1.5, 2), []float64{1.5, 1.5})
 	check.Eq(t, Repeat(1.5, 3), []float64{1.5, 1.5, 1.5})
 }
+
+func TestReverseReturnsValuesInFlippedOrder(t *testing.T) {
+	check.Eq(t, Reverse(nil), nil)
+	check.Eq(t, Reverse([]float64{1}), []float64{1})
+	check.Eq(t, Reverse([]float64{1, 2}), []float64{2, 1})
+	check.Eq(t, Reverse([]float64{1, 2, 3}), []float64{3, 2, 1})
+}
