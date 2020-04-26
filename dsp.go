@@ -230,3 +230,12 @@ func Reverse(x []FLOAT) []FLOAT {
 	}
 	return y
 }
+
+// Scale returns a new array with all values in a scaled by factor.
+func Scale(a []FLOAT, factor FLOAT) []FLOAT {
+	b := make([]FLOAT, len(a))
+	for i := range b {
+		b[i] = a[i] * factor
+	}
+	return b
+}

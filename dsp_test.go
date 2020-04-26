@@ -155,3 +155,10 @@ func TestReverseReturnsValuesInFlippedOrder(t *testing.T) {
 	check.Eq(t, Reverse([]FLOAT{1, 2}), []FLOAT{2, 1})
 	check.Eq(t, Reverse([]FLOAT{1, 2, 3}), []FLOAT{3, 2, 1})
 }
+
+func TestScaleMultipliesEveryElementWithGivenFactor(t *testing.T) {
+	check.Eq(t, Scale(nil, 2), nil)
+	check.Eq(t, Scale([]FLOAT{1}, 2), []FLOAT{2})
+	check.Eq(t, Scale([]FLOAT{1, 2}, 2), []FLOAT{2, 4})
+	check.Eq(t, Scale([]FLOAT{1, 2, 3}, 2), []FLOAT{2, 4, 6})
+}
