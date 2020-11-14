@@ -180,3 +180,11 @@ func TestAbsValueReturnsAbsoluteValueOfSingleInput(t *testing.T) {
 	check.Eq(t, AbsValue(posInf), posInf)
 	check.Eq(t, AbsValue(negInf), posInf)
 }
+
+func TestRangeEnumeratesIntegersAsFloats(t *testing.T) {
+	check.Eq(t, Range(0, 0), []float32{0.0})
+	check.Eq(t, Range(0, 1), []float32{0.0, 1.0})
+	check.Eq(t, Range(10, 8), []float32{10.0, 9.0, 8.0})
+	check.Eq(t, Range(-2, 3), []float32{-2, -1, 0, 1, 2, 3})
+	check.Eq(t, Range(3, -2), []float32{3, 2, 1, 0, -1, -2})
+}

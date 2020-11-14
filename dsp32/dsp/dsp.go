@@ -259,3 +259,27 @@ func AbsValue(x float32) float32 {
 	}
 	return -x
 }
+
+// Range returns an array containing all integer numbers in the range from a to
+// b, both inclusive. The order of the number is the same as the order from a to
+// b.
+//
+// Examples:
+//
+// 	Range(5, 8)  =>  {5.0, 6.0, 7.0, 8.0}
+// 	Range(2, -3) =>  {2.0, 1.0, 0.0, -1.0, -2.0, -3.0}
+func Range(a, b int) []float32 {
+	if a <= b {
+		r := make([]float32, b-a+1)
+		for i := range r {
+			r[i] = float32(a + i)
+		}
+		return r
+	} else {
+		r := make([]float32, a-b+1)
+		for i := range r {
+			r[i] = float32(a - i)
+		}
+		return r
+	}
+}
