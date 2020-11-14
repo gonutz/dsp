@@ -162,3 +162,21 @@ func TestScaleMultipliesEveryElementWithGivenFactor(t *testing.T) {
 	check.Eq(t, Scale([]float64{1, 2}, 2), []float64{2, 4})
 	check.Eq(t, Scale([]float64{1, 2, 3}, 2), []float64{2, 4, 6})
 }
+
+func TestAbsReturnsAbsoluteValues(t *testing.T) {
+	check.Eq(t, Abs(nil), nil)
+	check.Eq(t, Abs([]float64{1}), []float64{1})
+	check.Eq(t, Abs([]float64{-1}), []float64{1})
+	check.Eq(t, Abs([]float64{1, -2, 3, -4}), []float64{1, 2, 3, 4})
+}
+
+func TestAbsValueReturnsAbsoluteValueOfSingleInput(t *testing.T) {
+	check.Eq(t, AbsValue(1), 1)
+	check.Eq(t, AbsValue(-1), 1)
+	nan := float64(math.NaN())
+	posInf := float64(math.Inf(1))
+	negInf := float64(math.Inf(-1))
+	check.Eq(t, AbsValue(nan), nan)
+	check.Eq(t, AbsValue(posInf), posInf)
+	check.Eq(t, AbsValue(negInf), posInf)
+}

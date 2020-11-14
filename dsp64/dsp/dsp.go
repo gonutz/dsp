@@ -239,3 +239,23 @@ func Scale(a []float64, factor float64) []float64 {
 	}
 	return b
 }
+
+// Abs returns a new array, the same length as x, with all values the absolute
+// values of x, i.e. the value itself if it is >= 0 and the negative value if it
+// is < 0.
+func Abs(x []float64) []float64 {
+	a := make([]float64, len(x))
+	for i := range a {
+		a[i] = AbsValue(x[i])
+	}
+	return a
+}
+
+// Abs returns the absolute value of x, i.e. the value itself if it is >= 0 and
+// the negative value if it is < 0.
+func AbsValue(x float64) float64 {
+	if x >= 0 {
+		return x
+	}
+	return -x
+}
