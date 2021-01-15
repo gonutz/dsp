@@ -240,3 +240,47 @@ func Scale(a []FLOAT, factor FLOAT) []FLOAT {
 	}
 	return b
 }
+
+// Abs returns a new array, the same length as x, with all values the absolute
+// values of x, i.e. the value itself if it is >= 0 and the negative value if it
+// is < 0.
+func Abs(x []FLOAT) []FLOAT {
+	a := make([]FLOAT, len(x))
+	for i := range a {
+		a[i] = AbsValue(x[i])
+	}
+	return a
+}
+
+// Abs returns the absolute value of x, i.e. the value itself if it is >= 0 and
+// the negative value if it is < 0.
+func AbsValue(x FLOAT) FLOAT {
+	if x >= 0 {
+		return x
+	}
+	return -x
+}
+
+// Range returns an array containing all integer numbers in the range from a to
+// b, both inclusive. The order of the number is the same as the order from a to
+// b.
+//
+// Examples:
+//
+// 	Range(5, 8)  =>  {5.0, 6.0, 7.0, 8.0}
+// 	Range(2, -3) =>  {2.0, 1.0, 0.0, -1.0, -2.0, -3.0}
+func Range(a, b int) []FLOAT {
+	if a <= b {
+		r := make([]FLOAT, b-a+1)
+		for i := range r {
+			r[i] = FLOAT(a + i)
+		}
+		return r
+	} else {
+		r := make([]FLOAT, a-b+1)
+		for i := range r {
+			r[i] = FLOAT(a - i)
+		}
+		return r
+	}
+}

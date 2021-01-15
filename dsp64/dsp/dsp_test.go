@@ -162,3 +162,29 @@ func TestScaleMultipliesEveryElementWithGivenFactor(t *testing.T) {
 	check.Eq(t, Scale([]float64{1, 2}, 2), []float64{2, 4})
 	check.Eq(t, Scale([]float64{1, 2, 3}, 2), []float64{2, 4, 6})
 }
+
+func TestAbsReturnsAbsoluteValues(t *testing.T) {
+	check.Eq(t, Abs(nil), nil)
+	check.Eq(t, Abs([]float64{1}), []float64{1})
+	check.Eq(t, Abs([]float64{-1}), []float64{1})
+	check.Eq(t, Abs([]float64{1, -2, 3, -4}), []float64{1, 2, 3, 4})
+}
+
+func TestAbsValueReturnsAbsoluteValueOfSingleInput(t *testing.T) {
+	check.Eq(t, AbsValue(1), 1)
+	check.Eq(t, AbsValue(-1), 1)
+	nan := float64(math.NaN())
+	posInf := float64(math.Inf(1))
+	negInf := float64(math.Inf(-1))
+	check.Eq(t, AbsValue(nan), nan)
+	check.Eq(t, AbsValue(posInf), posInf)
+	check.Eq(t, AbsValue(negInf), posInf)
+}
+
+func TestRangeEnumeratesIntegersAsFloats(t *testing.T) {
+	check.Eq(t, Range(0, 0), []float64{0.0})
+	check.Eq(t, Range(0, 1), []float64{0.0, 1.0})
+	check.Eq(t, Range(10, 8), []float64{10.0, 9.0, 8.0})
+	check.Eq(t, Range(-2, 3), []float64{-2, -1, 0, 1, 2, 3})
+	check.Eq(t, Range(3, -2), []float64{3, 2, 1, 0, -1, -2})
+}
