@@ -111,7 +111,8 @@ func Negative(a []float64) []float64 {
 	return n
 }
 
-// Derivative
+// Derivative returns a slice one item smaller than a, with the differences
+// between neighboring items. Result 0 is a[1]-a[0] and so on.
 func Derivative(a []float64) []float64 {
 	if len(a) <= 1 {
 		return make([]float64, len(a))
