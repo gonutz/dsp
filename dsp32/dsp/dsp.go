@@ -1,6 +1,9 @@
 package dsp
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 // Copy returns a copy of the given slice.
 func Copy(a []float32) []float32 {
@@ -62,9 +65,10 @@ func MaxValue(a []float32) float32 {
 // If the width is 1 or smaller, a copy of the input array is returned.
 // If width is greater than len(a), a one-element array with the average value
 // over a is returned.
+// For an empty input an empty output is returned.
 func AverageFilter(a []float32, width int) []float32 {
 	if width >= len(a) {
-		return []float32{Average(a)}
+		width = len(a)
 	}
 
 	if width <= 1 {
@@ -87,6 +91,38 @@ func AverageFilter(a []float32, width int) []float32 {
 
 	return b
 }
+
+// MedianFilter returns a new array of median filtered values over a. The
+// resulting array is width-1 smaller than a. Neighboring elements (width
+// neighbors) are sorted and the middle element replaces the origial.
+// If the width is 1 or smaller, a copy of the input array is returned.
+// If width is greater than len(a), a one-element array with the median value
+// over a is returned.
+// For an empty input an empty output is returned.
+func MedianFilter(a []float32, width int) []float32 {
+	if width >= len(a) {
+		width = len(a)
+	}
+
+	if width <= 1 {
+		return Copy(a)
+	}
+
+	buf := make([]float32, width)
+	b := make([]float32, len(a)-width+1)
+	for i := range b {
+		copy(buf, a[i:])
+		sort.Sort(floats(buf))
+		b[i] = buf[width/2]
+	}
+	return b
+}
+
+type floats []float32
+
+func (f floats) Len() int           { return len(f) }
+func (f floats) Less(i, j int) bool { return f[i] < f[j] }
+func (f floats) Swap(i, j int)      { f[i], f[j] = f[j], f[i] }
 
 // Average returns the average vaue over a or 0 if a is empty.
 func Average(a []float32) float32 {

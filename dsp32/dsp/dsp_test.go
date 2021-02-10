@@ -54,16 +54,46 @@ func TestAverageFilterLeavesAtLeastOneElement(t *testing.T) {
 	check.Eq(t, AverageFilter([]float32{1, 2, 3}, 3), []float32{2})
 	check.Eq(t, AverageFilter([]float32{1, 2, 3}, 4), []float32{2})
 	check.Eq(t, AverageFilter([]float32{1, 2, 3}, 999), []float32{2})
+}
 
-	check.Eq(t, AverageFilter(nil, 0), []float32{0})
-	check.Eq(t, AverageFilter(nil, 1), []float32{0})
-	check.Eq(t, AverageFilter(nil, 2), []float32{0})
+func TestAverageFilterOverEmptyInputReturnsEmptyOutput(t *testing.T) {
+	check.Eq(t, AverageFilter(nil, 0), nil)
+	check.Eq(t, AverageFilter(nil, 1), nil)
+	check.Eq(t, AverageFilter(nil, 2), nil)
 }
 
 func TestAverageFilterOfWidthOneOrLessReturnsCopyOfInput(t *testing.T) {
 	for width := 1; width >= -2; width-- {
 		a := []float32{1, 2, 3}
 		avg := AverageFilter(a, width)
+		a[1] = 0
+		check.Eq(t, avg, []float32{1, 2, 3})
+		check.Eq(t, a, []float32{1, 0, 3})
+	}
+}
+
+func TestMedianFilter(t *testing.T) {
+	check.Eq(t, MedianFilter([]float32{2, 1, 30, 50, 44}, 3), []float32{2, 30, 44})
+	check.Eq(t, MedianFilter([]float32{1, 3, 2}, 2), []float32{3, 3})
+	check.Eq(t, MedianFilter([]float32{1, 3, 2}, 1), []float32{1, 3, 2})
+}
+
+func TestMedianFilterLeavesAtLeastOneElement(t *testing.T) {
+	check.Eq(t, MedianFilter([]float32{1, 2, 3}, 3), []float32{2})
+	check.Eq(t, MedianFilter([]float32{1, 2, 3}, 4), []float32{2})
+	check.Eq(t, MedianFilter([]float32{1, 2, 3}, 999), []float32{2})
+}
+
+func TestMedianFilterOverEmptyInputReturnsEmptyOutput(t *testing.T) {
+	check.Eq(t, MedianFilter(nil, 0), nil)
+	check.Eq(t, MedianFilter(nil, 1), nil)
+	check.Eq(t, MedianFilter(nil, 2), nil)
+}
+
+func TestMedianFilterOfWidthOneOrLessReturnsCopyOfInput(t *testing.T) {
+	for width := 1; width >= -2; width-- {
+		a := []float32{1, 2, 3}
+		avg := MedianFilter(a, width)
 		a[1] = 0
 		check.Eq(t, avg, []float32{1, 2, 3})
 		check.Eq(t, a, []float32{1, 0, 3})
