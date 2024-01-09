@@ -7,5 +7,3 @@ popd
 pushd dsp64\dsp
 go test
 popd
-
-pause

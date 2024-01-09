@@ -245,7 +245,7 @@ func EveryNth(a []float32, n int) []float32 {
 	return b
 }
 
-// Repeat makes s slice of float32 of length n and sets all values to x. If n <= 0
+// Repeat makes a slice of float32 of length n and sets all values to x. If n <= 0
 // the returned slice is empty.
 func Repeat(x float32, n int) []float32 {
 	if n <= 0 {

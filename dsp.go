@@ -245,7 +245,7 @@ func EveryNth(a []FLOAT, n int) []FLOAT {
 	return b
 }
 
-// Repeat makes s slice of FLOAT of length n and sets all values to x. If n <= 0
+// Repeat makes a slice of FLOAT of length n and sets all values to x. If n <= 0
 // the returned slice is empty.
 func Repeat(x FLOAT, n int) []FLOAT {
 	if n <= 0 {
